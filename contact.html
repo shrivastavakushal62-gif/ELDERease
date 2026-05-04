@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Family – ElderEase</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="nav-brand">🌿 ElderEase</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="medicine.html">💊 Medicine</a></li>
+      <li><a href="emergency.html">🚨 Emergency</a></li>
+      <li><a href="learn.html">📱 Learn Mobile</a></li>
+      <li><a href="contact.html" class="active">📞 Contact</a></li>
+    </ul>
+    <div class="nav-controls">
+      <button class="toggle-btn" onclick="toggleDark()">🌙</button>
+      <button class="toggle-btn" onclick="speak('Contact Family Page. Find family numbers and send a message below.')">🔊</button>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+  </nav>
+
+  <main>
+    <section class="page-hero orange-bg">
+      <h1>📞 Contact Family</h1>
+      <p>Your family is always one tap away!</p>
+    </section>
+
+    <section class="content-section">
+
+      <!-- FAMILY CONTACTS -->
+      <div class="card-box">
+        <h2>👨‍👩‍👧‍👦 Family Contact Numbers</h2>
+        <div class="family-grid">
+
+          <div class="family-card">
+            <div class="family-avatar">👦</div>
+            <div class="family-info">
+              <div class="family-name">Ramesh (Son)</div>
+              <div class="family-relation">Son – lives in Delhi</div>
+              <div class="family-phone">📞 98765 43210</div>
+            </div>
+            <div class="family-actions">
+              <button class="small-btn btn-blue" onclick="simulateCall('Ramesh')">📞 Call</button>
+              <button class="small-btn btn-green" onclick="openMessage('Ramesh')">💬 Message</button>
+            </div>
+          </div>
+
+          <div class="family-card">
+            <div class="family-avatar">👧</div>
+            <div class="family-info">
+              <div class="family-name">Priya (Daughter)</div>
+              <div class="family-relation">Daughter – lives nearby</div>
+              <div class="family-phone">📞 98765 43211</div>
+            </div>
+            <div class="family-actions">
+              <button class="small-btn btn-blue" onclick="simulateCall('Priya')">📞 Call</button>
+              <button class="small-btn btn-green" onclick="openMessage('Priya')">💬 Message</button>
+            </div>
+          </div>
+
+          <div class="family-card">
+            <div class="family-avatar">👴</div>
+            <div class="family-info">
+              <div class="family-name">Suresh (Brother)</div>
+              <div class="family-relation">Brother – lives in Nagpur</div>
+              <div class="family-phone">📞 98765 43212</div>
+            </div>
+            <div class="family-actions">
+              <button class="small-btn btn-blue" onclick="simulateCall('Suresh')">📞 Call</button>
+              <button class="small-btn btn-green" onclick="openMessage('Suresh')">💬 Message</button>
+            </div>
+          </div>
+
+          <div class="family-card">
+            <div class="family-avatar">👨‍⚕️</div>
+            <div class="family-info">
+              <div class="family-name">Dr. Sharma</div>
+              <div class="family-relation">Family Doctor</div>
+              <div class="family-phone">📞 12345 67890</div>
+            </div>
+            <div class="family-actions">
+              <button class="small-btn btn-blue" onclick="simulateCall('Dr. Sharma')">📞 Call</button>
+              <button class="small-btn btn-green" onclick="openMessage('Dr. Sharma')">💬 Message</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SEND MESSAGE BOX -->
+      <div class="card-box" id="messageBox" style="display:none;">
+        <h2>✉️ Send a Message to <span id="messageTo"></span></h2>
+        <p class="big-text">Type your message below and press Send!</p>
+
+        <label class="big-label">Your Message:</label>
+        <textarea class="big-input big-textarea" id="messageText"
+          placeholder="Type your message here... e.g. Are you coming home today?"></textarea>
+
+        <div class="quick-messages">
+          <p><strong>Quick Messages – just tap to use:</strong></p>
+          <button class="quick-btn" onclick="useQuickMsg('I am okay, do not worry 😊')">I am okay 😊</button>
+          <button class="quick-btn" onclick="useQuickMsg('Please call me when you are free 📞')">Call me please 📞</button>
+          <button class="quick-btn" onclick="useQuickMsg('I need help, please come home 🙏')">Need help 🙏</button>
+          <button class="quick-btn" onclick="useQuickMsg('Medicine finished, please bring more 💊')">Medicine needed 💊</button>
+        </div>
+
+        <div class="btn-row">
+          <button class="big-btn btn-green" onclick="sendMessage()">📤 Send Message</button>
+          <button class="big-btn btn-gray" onclick="closeMessage()">❌ Cancel</button>
+        </div>
+      </div>
+
+      <!-- MESSAGE SENT CONFIRMATION -->
+      <div id="sentBox" class="card-box center hidden">
+        <div style="font-size:80px;">✅</div>
+        <h2>Message Sent!</h2>
+        <p class="big-text">Your message has been sent to <span id="sentTo"></span>!</p>
+        <p class="muted">They will reply to you soon. Stay calm! 😊</p>
+        <button class="big-btn btn-blue" onclick="document.getElementById('sentBox').classList.add('hidden')">
+          👍 OK, Thank You!
+        </button>
+      </div>
+
+      <!-- HELPLINE NUMBERS -->
+      <div class="card-box">
+        <h2>📋 Useful Numbers to Remember</h2>
+        <div class="helpline-grid">
+          <div class="helpline-item red-border">
+            <div class="helpline-num">108</div>
+            <div class="helpline-label">🚑 Ambulance</div>
+          </div>
+          <div class="helpline-item blue-border">
+            <div class="helpline-num">100</div>
+            <div class="helpline-label">👮 Police</div>
+          </div>
+          <div class="helpline-item orange-border">
+            <div class="helpline-num">101</div>
+            <div class="helpline-label">🚒 Fire</div>
+          </div>
+          <div class="helpline-item green-border">
+            <div class="helpline-num">14567</div>
+            <div class="helpline-label">👵 Senior Help</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>🌿 ElderEase – Made with ❤️ for Senior Citizens</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    let currentContact = '';
+
+    // Open message box for a contact
+    function openMessage(name) {
+      currentContact = name;
+      document.getElementById('messageTo').textContent = name;
+      document.getElementById('messageText').value = '';
+      document.getElementById('messageBox').style.display = 'block';
+      document.getElementById('messageBox').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Close message box
+    function closeMessage() {
+      document.getElementById('messageBox').style.display = 'none';
+    }
+
+    // Use a quick message template
+    function useQuickMsg(msg) {
+      document.getElementById('messageText').value = msg;
+    }
+
+    // Send the message (simulated)
+    function sendMessage() {
+      const text = document.getElementById('messageText').value.trim();
+      if (!text) {
+        alert('⚠️ Please type a message first!');
+        return;
+      }
+      closeMessage();
+      speak(`Message sent to ${currentContact}. They will reply soon.`);
+      document.getElementById('sentTo').textContent = currentContact;
+      const sentBox = document.getElementById('sentBox');
+      sentBox.classList.remove('hidden');
+      sentBox.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Simulate a call
+    function simulateCall(name) {
+      speak(`Calling ${name}`);
+      alert(`📞 Calling ${name}...\n\nThis is a simulation. On a real phone, the call would connect.`);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Medicine Reminder – ElderEase</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="nav-brand">🌿 ElderEase</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="medicine.html" class="active">💊 Medicine</a></li>
+      <li><a href="emergency.html">🚨 Emergency</a></li>
+      <li><a href="learn.html">📱 Learn Mobile</a></li>
+      <li><a href="contact.html">📞 Contact</a></li>
+    </ul>
+    <div class="nav-controls">
+      <button class="toggle-btn" onclick="toggleDark()">🌙</button>
+      <button class="toggle-btn" onclick="speak('Medicine Reminder Page. Set your medicine time below.')">🔊</button>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+  </nav>
+
+  <main>
+    <section class="page-hero blue-bg">
+      <h1>💊 Medicine Reminder</h1>
+      <p>Never forget to take your medicine again!</p>
+    </section>
+
+    <section class="content-section">
+
+      <!-- ADD REMINDER FORM -->
+      <div class="card-box">
+        <h2>➕ Set a New Reminder</h2>
+
+        <label class="big-label" for="medName">Medicine Name</label>
+        <input class="big-input" type="text" id="medName" placeholder="e.g. Blood Pressure Tablet"/>
+
+        <label class="big-label" for="medTime">Time to Take Medicine</label>
+        <input class="big-input" type="time" id="medTime"/>
+
+        <label class="big-label" for="medNote">Extra Note (optional)</label>
+        <input class="big-input" type="text" id="medNote" placeholder="e.g. Take with water after food"/>
+
+        <button class="big-btn btn-blue" onclick="setReminder()">
+          ✅ Set Reminder
+        </button>
+      </div>
+
+      <!-- CURRENT TIME DISPLAY -->
+      <div class="card-box center">
+        <h2>🕐 Current Time</h2>
+        <div class="clock" id="clock">--:--:--</div>
+      </div>
+
+      <!-- REMINDERS LIST -->
+      <div class="card-box">
+        <h2>📋 Your Reminders</h2>
+        <div id="reminderList" class="reminder-list">
+          <p class="muted">No reminders set yet. Add one above!</p>
+        </div>
+        <button class="big-btn btn-red" onclick="clearAllReminders()">
+          🗑️ Clear All Reminders
+        </button>
+      </div>
+
+      <!-- NOTIFICATION AREA -->
+      <div id="notification" class="notification hidden">
+        <div class="notif-icon">🔔</div>
+        <div class="notif-text">Time to take your medicine!</div>
+        <button onclick="dismissNotif()">✅ OK, Done!</button>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>🌿 ElderEase – Made with ❤️ for Senior Citizens</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // ---- Medicine Reminder Logic ----
+
+    // Load reminders from localStorage and display
+    function loadReminders() {
+      const reminders = JSON.parse(localStorage.getItem('elderease_reminders') || '[]');
+      const list = document.getElementById('reminderList');
+      if (reminders.length === 0) {
+        list.innerHTML = '<p class="muted">No reminders set yet. Add one above!</p>';
+        return;
+      }
+      list.innerHTML = reminders.map((r, i) => `
+        <div class="reminder-item">
+          <span class="reminder-icon">💊</span>
+          <div class="reminder-info">
+            <strong>${r.name}</strong>
+            <span class="reminder-time">⏰ ${formatTime(r.time)}</span>
+            ${r.note ? `<span class="reminder-note">📝 ${r.note}</span>` : ''}
+          </div>
+          <button class="del-btn" onclick="deleteReminder(${i})">❌</button>
+        </div>
+      `).join('');
+    }
+
+    // Format 24hr time to 12hr AM/PM
+    function formatTime(t) {
+      const [h, m] = t.split(':');
+      const hour = parseInt(h);
+      const ampm = hour >= 12 ? 'PM' : 'AM';
+      const hr12 = hour % 12 || 12;
+      return `${hr12}:${m} ${ampm}`;
+    }
+
+    // Set a new reminder
+    function setReminder() {
+      const name = document.getElementById('medName').value.trim();
+      const time = document.getElementById('medTime').value;
+      const note = document.getElementById('medNote').value.trim();
+
+      if (!name || !time) {
+        alert('⚠️ Please enter medicine name and time!');
+        return;
+      }
+
+      const reminders = JSON.parse(localStorage.getItem('elderease_reminders') || '[]');
+      reminders.push({ name, time, note });
+      localStorage.setItem('elderease_reminders', JSON.stringify(reminders));
+
+      // Clear inputs
+      document.getElementById('medName').value = '';
+      document.getElementById('medTime').value = '';
+      document.getElementById('medNote').value = '';
+
+      loadReminders();
+      speak(`Reminder set for ${name} at ${formatTime(time)}`);
+      showSuccess('✅ Reminder set successfully!');
+    }
+
+    // Delete one reminder
+    function deleteReminder(i) {
+      const reminders = JSON.parse(localStorage.getItem('elderease_reminders') || '[]');
+      reminders.splice(i, 1);
+      localStorage.setItem('elderease_reminders', JSON.stringify(reminders));
+      loadReminders();
+    }
+
+    // Clear all reminders
+    function clearAllReminders() {
+      if (confirm('Are you sure you want to clear all reminders?')) {
+        localStorage.removeItem('elderease_reminders');
+        loadReminders();
+      }
+    }
+
+    // Show success message
+    function showSuccess(msg) {
+      const div = document.createElement('div');
+      div.className = 'success-toast';
+      div.textContent = msg;
+      document.body.appendChild(div);
+      setTimeout(() => div.remove(), 3000);
+    }
+
+    // Check if any reminder matches current time
+    function checkReminders() {
+      const reminders = JSON.parse(localStorage.getItem('elderease_reminders') || '[]');
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2, '0');
+      const mm = String(now.getMinutes()).padStart(2, '0');
+      const currentTime = `${hh}:${mm}`;
+
+      reminders.forEach(r => {
+        if (r.time === currentTime) {
+          const notif = document.getElementById('notification');
+          notif.querySelector('.notif-text').textContent = `⏰ Time to take your medicine: ${r.name}`;
+          notif.classList.remove('hidden');
+          speak(`Time to take your medicine: ${r.name}`);
+        }
+      });
+    }
+
+    function dismissNotif() {
+      document.getElementById('notification').classList.add('hidden');
+    }
+
+    // Update clock every second
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('clock').textContent = now.toLocaleTimeString('en-IN', { hour12: true });
+    }
+
+    // Init
+    loadReminders();
+    updateClock();
+    setInterval(updateClock, 1000);
+    setInterval(checkReminders, 60000); // check every minute
+    checkReminders(); // check immediately on load
+  </script>
+</body>
+</html>

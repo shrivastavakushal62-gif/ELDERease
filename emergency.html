@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Emergency Help – ElderEase</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="nav-brand">🌿 ElderEase</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="medicine.html">💊 Medicine</a></li>
+      <li><a href="emergency.html" class="active">🚨 Emergency</a></li>
+      <li><a href="learn.html">📱 Learn Mobile</a></li>
+      <li><a href="contact.html">📞 Contact</a></li>
+    </ul>
+    <div class="nav-controls">
+      <button class="toggle-btn" onclick="toggleDark()">🌙</button>
+      <button class="toggle-btn" onclick="speak('Emergency Help Page. Press the big red button in case of emergency.')">🔊</button>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+  </nav>
+
+  <main>
+    <section class="page-hero red-bg">
+      <h1>🚨 Emergency Help</h1>
+      <p>Press the big button below in case of emergency!</p>
+    </section>
+
+    <section class="content-section center">
+
+      <!-- BIG EMERGENCY BUTTON -->
+      <div class="card-box center">
+        <h2>In an Emergency?</h2>
+        <p class="big-text">Press the button below to call for help immediately!</p>
+
+        <button class="emergency-btn pulse" onclick="callEmergency()">
+          📞<br/>CALL FOR HELP<br/>NOW!
+        </button>
+
+        <p class="muted" style="margin-top:20px;">This will alert your family members immediately</p>
+      </div>
+
+      <!-- EMERGENCY CONTACTS -->
+      <div class="card-box">
+        <h2>📱 Quick Emergency Contacts</h2>
+        <div class="contact-grid">
+
+          <div class="contact-item" onclick="simulateCall('Son – Ramesh', '9876543210')">
+            <div class="contact-avatar blue-bg">👦</div>
+            <div class="contact-name">Son – Ramesh</div>
+            <div class="contact-num">📞 9876543210</div>
+            <button class="small-btn btn-blue">Call Now</button>
+          </div>
+
+          <div class="contact-item" onclick="simulateCall('Daughter – Priya', '9876543211')">
+            <div class="contact-avatar green-bg">👧</div>
+            <div class="contact-name">Daughter – Priya</div>
+            <div class="contact-num">📞 9876543211</div>
+            <button class="small-btn btn-green">Call Now</button>
+          </div>
+
+          <div class="contact-item" onclick="simulateCall('Doctor – Dr. Sharma', '1234567890')">
+            <div class="contact-avatar orange-bg">👨‍⚕️</div>
+            <div class="contact-name">Doctor – Dr. Sharma</div>
+            <div class="contact-num">📞 1234567890</div>
+            <button class="small-btn btn-orange">Call Now</button>
+          </div>
+
+          <div class="contact-item" onclick="simulateCall('Ambulance', '108')">
+            <div class="contact-avatar red-bg">🚑</div>
+            <div class="contact-name">Ambulance</div>
+            <div class="contact-num">📞 108 (Free)</div>
+            <button class="small-btn btn-red">Call Now</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- HELPLINE NUMBERS -->
+      <div class="card-box">
+        <h2>📋 Important Helpline Numbers</h2>
+        <table class="helpline-table">
+          <tr><th>Service</th><th>Number</th></tr>
+          <tr><td>🚑 Ambulance</td><td><strong>108</strong></td></tr>
+          <tr><td>🚒 Fire Brigade</td><td><strong>101</strong></td></tr>
+          <tr><td>👮 Police</td><td><strong>100</strong></td></tr>
+          <tr><td>👵 Senior Citizen Helpline</td><td><strong>14567</strong></td></tr>
+          <tr><td>🏥 Government Hospital</td><td><strong>104</strong></td></tr>
+        </table>
+      </div>
+
+    </section>
+
+    <!-- SIMULATED CALL OVERLAY -->
+    <div id="callOverlay" class="call-overlay hidden">
+      <div class="call-box">
+        <div class="call-icon">📞</div>
+        <div class="call-title" id="callTitle">Calling...</div>
+        <div class="call-num" id="callNum"></div>
+        <div class="call-status" id="callStatus">Connecting...</div>
+        <div class="call-spinner"></div>
+        <button class="big-btn btn-red" onclick="endCall()" style="margin-top:20px;">
+          🔴 End Call
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p>🌿 ElderEase – Made with ❤️ for Senior Citizens</p>
+    <p style="font-size:18px;">Emergency? Call <strong>108</strong> for Ambulance | <strong>100</strong> for Police</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Trigger full emergency (calls all family members)
+    function callEmergency() {
+      speak('Emergency alert sent. Calling your family members now. Please stay calm. Help is on the way.');
+      const overlay = document.getElementById('callOverlay');
+      document.getElementById('callTitle').textContent = '🚨 Emergency Alert Sent!';
+      document.getElementById('callNum').textContent = 'Alerting all family members...';
+      document.getElementById('callStatus').textContent = 'Connecting to Son – Ramesh...';
+      overlay.classList.remove('hidden');
+
+      // Simulate connection progress
+      setTimeout(() => {
+        document.getElementById('callStatus').textContent = '✅ Connected! Help is on the way.';
+      }, 3000);
+    }
+
+    // Simulate individual call
+    function simulateCall(name, num) {
+      speak(`Calling ${name}`);
+      const overlay = document.getElementById('callOverlay');
+      document.getElementById('callTitle').textContent = `📞 Calling ${name}`;
+      document.getElementById('callNum').textContent = `📱 ${num}`;
+      document.getElementById('callStatus').textContent = 'Ringing...';
+      overlay.classList.remove('hidden');
+
+      setTimeout(() => {
+        document.getElementById('callStatus').textContent = `✅ ${name} has been notified!`;
+      }, 3000);
+    }
+
+    // End the simulated call
+    function endCall() {
+      document.getElementById('callOverlay').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>

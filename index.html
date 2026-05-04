@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ElderEase – Simple Help for Daily Life</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION BAR ===== -->
+  <nav class="navbar">
+    <div class="nav-brand">🌿 ElderEase</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">🏠 Home</a></li>
+      <li><a href="medicine.html">💊 Medicine</a></li>
+      <li><a href="emergency.html">🚨 Emergency</a></li>
+      <li><a href="learn.html">📱 Learn Mobile</a></li>
+      <li><a href="contact.html">📞 Contact</a></li>
+    </ul>
+    <div class="nav-controls">
+      <!-- Dark Mode Toggle -->
+      <button class="toggle-btn" onclick="toggleDark()" title="Toggle Dark Mode">🌙</button>
+      <!-- Voice Assistant -->
+      <button class="toggle-btn" onclick="speakWelcome()" title="Voice Assistant">🔊</button>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+  </nav>
+
+  <!-- ===== HERO SECTION ===== -->
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Welcome to<br/><span class="highlight">ElderEase</span> 🌟</h1>
+        <p class="hero-sub">Simple help for daily life – made just for you!</p>
+        <p class="hero-desc">
+          Easy to use. Easy to understand. We are here to help you every step of the way.
+        </p>
+      </div>
+      <div class="hero-image">🧓</div>
+    </section>
+
+    <!-- ===== MAIN BUTTONS SECTION ===== -->
+    <section class="features">
+      <h2>What would you like to do today?</h2>
+      <div class="feature-grid">
+
+        <a href="medicine.html" class="feature-card blue">
+          <div class="card-icon">💊</div>
+          <div class="card-title">Medicine Reminder</div>
+          <div class="card-desc">Set reminders so you never miss your medicine</div>
+        </a>
+
+        <a href="emergency.html" class="feature-card red">
+          <div class="card-icon">🚨</div>
+          <div class="card-title">Emergency Help</div>
+          <div class="card-desc">One tap to call your family in emergency</div>
+        </a>
+
+        <a href="learn.html" class="feature-card green">
+          <div class="card-icon">📱</div>
+          <div class="card-title">Learn Mobile</div>
+          <div class="card-desc">Step-by-step guides to use your phone easily</div>
+        </a>
+
+        <a href="contact.html" class="feature-card orange">
+          <div class="card-icon">📞</div>
+          <div class="card-title">Contact Family</div>
+          <div class="card-desc">Find family numbers and send a message</div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ===== TIPS SECTION ===== -->
+    <section class="tips-section">
+      <h2>💡 Daily Tips for You</h2>
+      <div class="tips-grid">
+        <div class="tip-card">☀️ <strong>Morning:</strong> Drink a glass of water when you wake up</div>
+        <div class="tip-card">🚶 <strong>Exercise:</strong> Walk for 20 minutes every day</div>
+        <div class="tip-card">💊 <strong>Medicine:</strong> Take medicines on time daily</div>
+        <div class="tip-card">😴 <strong>Sleep:</strong> Sleep 7–8 hours every night</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p>🌿 ElderEase – Made with ❤️ for Senior Citizens</p>
+    <p style="font-size:18px; margin-top:8px;">Need help? Call: <strong>1800-ELDER-EASE</strong></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Learn Mobile – ElderEase</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="nav-brand">🌿 ElderEase</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="medicine.html">💊 Medicine</a></li>
+      <li><a href="emergency.html">🚨 Emergency</a></li>
+      <li><a href="learn.html" class="active">📱 Learn Mobile</a></li>
+      <li><a href="contact.html">📞 Contact</a></li>
+    </ul>
+    <div class="nav-controls">
+      <button class="toggle-btn" onclick="toggleDark()">🌙</button>
+      <button class="toggle-btn" onclick="speak('Learn Mobile Page. Choose a topic to learn step by step.')">🔊</button>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+  </nav>
+
+  <main>
+    <section class="page-hero green-bg">
+      <h1>📱 Learn Mobile</h1>
+      <p>Easy step-by-step guides – just for you!</p>
+    </section>
+
+    <section class="content-section">
+
+      <!-- TOPIC TABS -->
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="showTopic('whatsapp', this)">💬 WhatsApp</button>
+        <button class="tab-btn" onclick="showTopic('payment', this)">💳 Payment</button>
+        <button class="tab-btn" onclick="showTopic('call', this)">📞 Phone Call</button>
+        <button class="tab-btn" onclick="showTopic('camera', this)">📷 Camera</button>
+      </div>
+
+      <!-- WHATSAPP GUIDE -->
+      <div id="topic-whatsapp" class="topic-section">
+        <div class="card-box">
+          <h2>💬 How to Use WhatsApp</h2>
+          <p class="big-text">WhatsApp helps you send messages and make free calls to family!</p>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <strong>Open WhatsApp</strong>
+                <p>Look for the green icon with a white phone on your mobile. Tap on it to open.</p>
+                <div class="tip-box">💡 Tip: The icon looks like this → 📱</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <strong>Find a Contact</strong>
+                <p>You will see a list of your contacts. Find the name of the person you want to message.</p>
+                <div class="tip-box">💡 Tip: Tap on the magnifying glass 🔍 to search by name</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <strong>Type a Message</strong>
+                <p>Tap the box at the bottom of the screen. Type your message using the keyboard.</p>
+                <div class="tip-box">💡 Tip: You can also press the 🎤 microphone to send a voice message!</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <strong>Send the Message</strong>
+                <p>Press the green arrow button ➡️ on the right to send. Your message is sent!</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">5</div>
+              <div class="step-content">
+                <strong>Make a Video Call</strong>
+                <p>Open a chat, then tap the video camera icon 📹 at the top right corner to start a video call!</p>
+                <div class="tip-box">💡 Tip: Make sure you are connected to WiFi for free calls!</div>
+              </div>
+            </div>
+          </div>
+
+          <button class="big-btn btn-green" onclick="speak('WhatsApp guide. Step 1: Open the green WhatsApp icon. Step 2: Find your contact. Step 3: Type your message. Step 4: Press send. Step 5: Use the video camera icon for video calls.')">
+            🔊 Listen to This Guide
+          </button>
+        </div>
+      </div>
+
+      <!-- PAYMENT GUIDE -->
+      <div id="topic-payment" class="topic-section hidden">
+        <div class="card-box">
+          <h2>💳 How to Make Online Payments</h2>
+          <p class="big-text">You can pay bills and shop online using UPI – it is safe and easy!</p>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <strong>Open a UPI App</strong>
+                <p>Look for apps like Google Pay, PhonePe, or Paytm on your mobile. Tap to open.</p>
+                <div class="tip-box">💡 Common apps: Google Pay 📱, PhonePe 💜, Paytm 🔵</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <strong>Choose "Send Money" or "Pay"</strong>
+                <p>Look for a button that says "Send Money", "Pay", or "Transfer". Tap on it.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <strong>Enter Phone Number or Scan QR</strong>
+                <p>Type the phone number of the person you want to pay. OR scan the QR code shown at the shop.</p>
+                <div class="tip-box">💡 QR code looks like a square black-and-white pattern 📷</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <strong>Enter the Amount</strong>
+                <p>Type how much money you want to send. Double-check the amount before sending!</p>
+                <div class="tip-box">⚠️ Always check the amount carefully before sending!</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">5</div>
+              <div class="step-content">
+                <strong>Enter Your UPI PIN</strong>
+                <p>Enter your secret 4 or 6 digit PIN. Your money will be sent immediately!</p>
+                <div class="tip-box">🔒 Never share your PIN with anyone – not even family!</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="warning-box">
+            ⚠️ <strong>Stay Safe!</strong> Never share your OTP or PIN with anyone on phone. Banks never ask for PIN.
+          </div>
+
+          <button class="big-btn btn-blue" onclick="speak('Payment guide. Step 1: Open Google Pay or PhonePe. Step 2: Tap Send Money. Step 3: Enter phone number or scan QR code. Step 4: Enter the amount. Step 5: Enter your PIN. Never share your PIN with anyone.')">
+            🔊 Listen to This Guide
+          </button>
+        </div>
+      </div>
+
+      <!-- PHONE CALL GUIDE -->
+      <div id="topic-call" class="topic-section hidden">
+        <div class="card-box">
+          <h2>📞 How to Make a Phone Call</h2>
+          <p class="big-text">Making a phone call is very simple. Follow these steps!</p>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <strong>Open the Phone App</strong>
+                <p>Look for the green phone icon 📞 on your home screen. Tap on it.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <strong>Go to Contacts</strong>
+                <p>Tap on "Contacts" at the bottom of the screen to see your saved contacts list.</p>
+                <div class="tip-box">💡 Your contacts are people whose numbers you have saved</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <strong>Find the Person's Name</strong>
+                <p>Scroll through the list or type the name in the search box at the top.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <strong>Tap Their Name and Call</strong>
+                <p>Tap the person's name, then tap the green phone button 📞 to call them.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">5</div>
+              <div class="step-content">
+                <strong>End the Call</strong>
+                <p>When you are done talking, press the red button 🔴 to end the call.</p>
+              </div>
+            </div>
+          </div>
+
+          <button class="big-btn btn-orange" onclick="speak('Phone Call guide. Step 1: Open the green phone app. Step 2: Go to contacts. Step 3: Find the person\'s name. Step 4: Tap name and press green phone button. Step 5: Press red button to end call.')">
+            🔊 Listen to This Guide
+          </button>
+        </div>
+      </div>
+
+      <!-- CAMERA GUIDE -->
+      <div id="topic-camera" class="topic-section hidden">
+        <div class="card-box">
+          <h2>📷 How to Use the Camera</h2>
+          <p class="big-text">Take photos of your family and special moments easily!</p>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <strong>Open the Camera App</strong>
+                <p>Look for the camera icon 📷 on your home screen. Tap on it to open.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <strong>Point at What You Want to Photograph</strong>
+                <p>Hold your phone and point the back of it towards the person or object you want to take a photo of.</p>
+                <div class="tip-box">💡 Hold your phone steady with both hands for a clear photo!</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <strong>Press the Round Button</strong>
+                <p>There is a big round white button at the bottom. Press it once to take the photo!</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <strong>View Your Photo</strong>
+                <p>Tap the small square in the corner to see your photo. It is saved in your Gallery!</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">5</div>
+              <div class="step-content">
+                <strong>Share on WhatsApp</strong>
+                <p>Open the photo, tap Share, choose WhatsApp, and send to your family!</p>
+                <div class="tip-box">💡 Sharing memories with family is wonderful!</div>
+              </div>
+            </div>
+          </div>
+
+          <button class="big-btn btn-green" onclick="speak('Camera guide. Step 1: Open the camera app. Step 2: Point the phone at what you want. Step 3: Press the big round button to take photo. Step 4: Tap the small square to see your photo. Step 5: Share on WhatsApp to send to family.')">
+            🔊 Listen to This Guide
+          </button>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>🌿 ElderEase – Made with ❤️ for Senior Citizens</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Show the selected topic and hide others
+    function showTopic(topicId, btn) {
+      // Hide all topics
+      document.querySelectorAll('.topic-section').forEach(s => s.classList.add('hidden'));
+      // Show selected
+      document.getElementById('topic-' + topicId).classList.remove('hidden');
+      // Update active tab button
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+  </script>
+</body>
+</html>
