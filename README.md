@@ -1,4 +1,4 @@
-🌿 ELDERease
+#🌿 ELDERease
 
 ELDERease is a thoughtfully designed mobile application created to support elderly people in their daily lives. It focuses on simplicity, safety, and independence by providing essential tools like medical reminders, emergency assistance, family connectivity, and easy phone learning guidance.
 
